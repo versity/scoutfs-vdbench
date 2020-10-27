@@ -9,7 +9,7 @@
 data_errors=1
 
 * Create 100 files of size 800m
-fsd=fsd1,anchor=/mnt/scoutfs-7jM3/dir1,depth=1,width=10,files=10,size=800m
+fsd=fsd1,anchor=/mnt/scoutfs/dir1,depth=1,width=10,files=10,size=800m
 
 * random writes, reads with 8M
 fwd=format,xfersize=8M

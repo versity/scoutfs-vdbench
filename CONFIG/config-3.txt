@@ -9,7 +9,7 @@
 data_errors=1
 
 * Create 10 file of size 4000k
-fsd=fsd1,anchor=/mnt/scoutfs-7jM3/dir3,depth=1,width=1,files=10,size=4000k
+fsd=fsd1,anchor=/mnt/scoutfs/dir3,depth=1,width=1,files=10,size=4000k
 
 * random writes, reads with 4k
 fwd=format,xfersize=4k
