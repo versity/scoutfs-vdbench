@@ -1,0 +1,28 @@
+* Config 7
+* small buffered read sleep i/o test
+* Total run time: 60 hours
+
+* FSD: File System Definition
+* FWD: File system Workload Definition
+* RD:  Run Definition
+
+data_errors=1
+
+* Create 100 files of size 3200k
+fsd=fsd1,anchor=/mnt/scoutfs-7jM3/dir7,depth=1,width=10,files=10,size=3200k
+
+* random writes with 32k
+fwd=format,xfersize=32k
+fwd=fwd1,fsd=fsd1,fileio=random,operation=write,xfersize=32k,fileselect=random,stopafter=200
+fwd=fwd2,fsd=fsd1,fileio=random,operation=read,xfersize=32k,fileselect=random,stopafter=200
+* sequential writes, reads with 32k
+fwd=fwd3,fsd=fsd1,fileio=sequential,operation=write,xfersize=32k,fileselect=sequential
+fwd=fwd4,fsd=fsd1,fileio=sequential,operation=read,xfersize=32k,fileselect=sequential
+
+* run random write, read with 1,4,8,and 16 threads
+rd=rd1,fwd=fwd1,forthreads=(1,4,8,16),fwdrate=max,format=once,elapsed=6000,interval=5
+rd=rd2,fwd=fwd2,forthreads=(1,4,8,16),fwdrate=max,elapsed=6000,interval=5
+
+* run sequential write, read with 1,4,8,and 16 threads
+rd=rd3,fwd=fwd3,forthreads=(1,4,8,16),fwdrate=max,elapsed=6000,interval=5
+rd=rd4,fwd=fwd4,forthreads=(1,4,8,16),fwdrate=max,elapsed=6000,interval=5
